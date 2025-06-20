@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ulasan - Travel Indonesia</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .review-box {
+      background-color: var(--plum);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .review-box h3 {
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .review-box p {
+      font-style: italic;
+    }
+
+    #review-form {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    #review-form input,
+    #review-form textarea {
+      padding: 0.8rem;
+      border-radius: 5px;
+      border: none;
+    }
+
+    #review-form button {
+      padding: 0.8rem;
+      background-color: var(--orange);
+      color: var(--dark);
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">🇮🇩 ✈️ TRAVEL</a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link">Beranda</a></li>
+      <li><a href="tentang.html" class="nav-link">Tentang Kami</a></li>
+      <li><a href="tur.html" class="nav-link">Tur</a></li>
+      <li><a href="galeri.html" class="nav-link">Galeri</a></li>
+      <li><a href="ulasan.html" class="nav-link active">Ulasan</a></li>
+      <li><a href="kontak.html" class="nav-link">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <main style="padding: 4rem 2rem; max-width: 800px; margin: auto;">
+    <h1 style="text-align: center; margin-bottom: 2rem;">Ulasan Pelanggan</h1>
+    <p style="text-align: center; margin-bottom: 3rem;">
+      Lihat apa yang pelanggan kami katakan tentang pengalaman mereka menjelajahi Indonesia bersama kami, atau tambahkan ulasanmu sendiri!
+    </p>
+
+    <div id="review-list">
+      <div class="review-box">
+        <h3>Andi Pratama</h3>
+        <p>"Perjalanan ke Raja Ampat sangat luar biasa! Pemandangannya benar-benar seperti surga."</p>
+      </div>
+      <div class="review-box">
+        <h3>Sinta Ramadhani</h3>
+        <p>"Saya sangat menikmati tur budaya di Yogyakarta. Candi dan suasananya begitu tenang."</p>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <button onclick="showForm()" style="background-color: var(--orange); color: var(--dark); padding: 0.8rem 1.5rem; border-radius: 5px; font-weight: bold; border: none; cursor: pointer;">
+        Tambah Ulasan
+      </button>
+    </div>
+
+    <form id="review-form" onsubmit="addReview(event)">
+      <input type="text" id="nama" placeholder="Nama Anda" required>
+      <textarea id="pesan" rows="4" placeholder="Tulis ulasan Anda..." required></textarea>
+      <button type="submit">Kirim</button>
+    </form>
+  </main>
+
+  <script>
+    function showForm() {
+      document.getElementById('review-form').style.display = 'flex';
+    }
+
+    function addReview(event) {
+      event.preventDefault();
+
+      const nama = document.getElementById('nama').value.trim();
+      const pesan = document.getElementById('pesan').value.trim();
+
+      if (nama && pesan) {
+        const newReview = document.createElement('div');
+        newReview.classList.add('review-box');
+
+        newReview.innerHTML = `
+          <h3>${nama}</h3>
+          <p>"${pesan}"</p>
+        `;
+
+        document.getElementById('review-list').appendChild(newReview);
+
+        // Reset dan sembunyikan form
+        document.getElementById('review-form').reset();
+        document.getElementById('review-form').style.display = 'none';
+      }
+    }
+  </script>
+  <footer style="text-align: center; padding: 2rem 0; background-color: #111; color: #eee;">
+    <p>&copy; 2025 Travel Indonesia. Jelajahi Negerimu, Cintai Budayamu.</p>
+  </footer>
+</body>
+</html>
